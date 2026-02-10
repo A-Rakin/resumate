@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Resume Scanner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>🤖 AI Resume Scanner</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        <label><b>Job Description</b></label><br>
+        <textarea name="job_description" rows="6"
+                  placeholder="Paste the job description here..." required></textarea><br><br>
+
+        <label><b>Upload Resumes (PDF)</b></label><br>
+        <input type="file" name="resumes" multiple required><br><br>
+
+        <button type="submit">Scan & Rank Resumes</button>
+    </form>
+
+    {% if results %}
+    <div class="results">
+        <h3>📊 Ranking Results</h3>
+
+        {% for r in results %}
+        <div class="card">
+            <h3>{{ r.name }}</h3>
+            <div class="score">Match Score: {{ r.score }}%</div>
+
+            <div class="skills">
+                <b>Matched Skills:</b>
+                {% for skill in r.matched %}
+                    <span class="matched-badge">{{ skill }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="skills">
+                <b>Missing Skills:</b>
+                {% for skill in r.missing %}
+                    <span class="missing-badge">{{ skill }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="footer">
+        AI-Powered Resume Screening System
+    </div>
+</div>
+
+</body>
+</html>
