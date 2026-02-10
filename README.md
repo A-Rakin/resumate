@@ -105,3 +105,5 @@ Final Score = (0.7 × Semantic Similarity) + (0.3 × Skill Match)
 ### Prerequisites
 • Python 3.8 or higher
 • pip package manager
+
+<img width="1364" height="527" alt="image" src="https://github.com/user-attachments/assets/1bb75a4d-3f33-45d6-8776-88779396ea39" />
